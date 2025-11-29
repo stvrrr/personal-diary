@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Diary</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                <h1>My Diary</h1>
+            </div>
+            <div class="nav-buttons">
+                <button class="btn btn-nav active" id="writeBtn">Write</button>
+                <button class="btn btn-nav" id="browseBtn">Browse</button>
+                <button class="btn btn-icon" id="exportBtn" title="Export entries">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Write View -->
+        <div class="write-view active">
+            <div class="controls">
+                <div style="position: relative;">
+                    <button class="date-button" id="dateButton"></button>
+                    <div class="calendar-popup" id="calendarPopup">
+                        <div class="calendar-header">
+                            <button id="prevMonth">‹</button>
+                            <span class="calendar-month" id="calendarMonth"></span>
+                            <button id="nextMonth">›</button>
+                        </div>
+                        <div class="calendar-grid" id="calendarGrid"></div>
+                    </div>
+                </div>
+                <span class="word-count" id="wordCount">0 words</span>
+            </div>
+            <textarea 
+                class="entry-textarea" 
+                id="entryTextarea" 
+                placeholder="What's on your mind today?"
+            ></textarea>
+            <div class="save-notice">
+                Your entries are saved automatically and stored locally in your browser
+            </div>
+        </div>
+
+        <!-- Browse View -->
+        <div class="browse-view">
+            <div class="search-box">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search your entries...">
+            </div>
+            <div id="entriesList"></div>
+        </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div class="modal-overlay" id="exportModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Export Entries</h2>
+                <button class="modal-close" id="closeModal">×</button>
+            </div>
+
+            <div class="export-controls">
+                <button class="select-all-btn" id="selectAllBtn">Select All</button>
+                <div class="export-entry-list" id="exportEntryList"></div>
+                <div class="selected-count" id="selectedCount">0 entries selected</div>
+            </div>
+
+            <div class="download-section">
+                <div class="form-group">
+                    <label class="form-label" for="fileName">File Name</label>
+                    <input type="text" class="form-input" id="fileName" value="my-diary-export" placeholder="Enter file name">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="fileType">File Type</label>
+                    <select class="form-select" id="fileType">
+                        <option value="txt">Plain Text (.txt)</option>
+                        <option value="md">Markdown (.md)</option>
+                        <option value="html">HTML (.html)</option>
+                        <option value="json">JSON (.json)</option>
+                    </select>
+                </div>
+
+                <button class="download-btn" id="downloadBtn" disabled>Download Selected Entries</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
